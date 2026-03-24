@@ -1,45 +1,16 @@
-# crewai-skills-crew
+# CrewAI Skills Crew
 
-One agent. Any task. Skills loaded at runtime.
+One agent. Any task. Skills discovered and loaded at runtime.
 
-## Setup
+## What it does
 
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -e .
-cp .env.example .env        # add your API key
-```
-
-## Usage
-
-```bash
-# via crewAI CLI
-crewai run
-
-# via entry point
-crewai_skills_crew
-
-# via python directly
-python -m crewai_skills_crew.main "your task here"
-```
-
-## Examples
-
-```bash
-python -m crewai_skills_crew.main "generate 10 employee records as JSON, validate every field, write a summary"
-python -m crewai_skills_crew.main "clone https://github.com/owner/repo and summarise the last 10 commits"
-python -m crewai_skills_crew.main "create a CSV of 20 products with name/price/category and compute avg price per category"
-python -m crewai_skills_crew.main "read all .py files in ./workspace and find any syntax errors"
-```
-
-## How it works
+A single **General Purpose Executor** agent that dynamically discovers skills from markdown files, loads their instructions, and executes via bash — looping until the task is fully complete.
 
 ```
-python -m crewai_skills_crew.main "task"
+CrewHub sends "goal" input
       │
       ▼
-  One agent
+  Executor Agent
       │
       ├── list_skills        → what do I have?
       ├── load_skill(X)      → how do I do this?
@@ -50,36 +21,31 @@ python -m crewai_skills_crew.main "task"
       └── loop until done
 ```
 
-The agent discovers skills at runtime — no hardcoded workflows.
+No hardcoded workflows — the agent decides which skills to use based on the goal.
 
-## Project Structure
+## Inputs
 
-```
-crewai-skills-crew/
-├── pyproject.toml        ← project config + entry points
-├── .env.example          ← template for API keys
-├── README.md
-├── src/
-│   └── crewai_skills_crew/
-│       ├── __init__.py
-│       ├── main.py       ← entry points: run, train, replay, test
-│       ├── crew.py       ← one agent, one task, built from goal
-│       ├── config/
-│       │   ├── agents.yaml
-│       │   └── tasks.yaml
-│       ├── tools/
-│       │   ├── __init__.py
-│       │   ├── bash_tool.py
-│       │   ├── list_skills_tool.py
-│       │   └── load_skill_tool.py
-│       └── skills/
-│           ├── file_ops.md
-│           ├── run_python.md
-│           ├── git_ops.md
-│           └── ...
-├── workspace/            ← agent file output (gitignored)
-└── output/               ← reports (gitignored)
-```
+| Input | Description | Example |
+|-------|-------------|---------|
+| `goal` | The task to complete | `"generate 10 employee records as JSON, validate, write a summary"` |
+
+## Available Skills
+
+Skills are `.md` files in `src/crewai_skills_crew/skills/`. The agent discovers them automatically.
+
+| Skill | Purpose |
+|-------|---------|
+| `file_ops` | Read, write, copy, move files |
+| `run_python` | Execute Python scripts |
+| `git_ops` | Git clone, log, diff operations |
+| `http_request` | Make HTTP requests via curl |
+| `read_file` | Read file contents |
+| `write_file` | Write content to files |
+| `validate_json` | Validate JSON structure |
+| `validate_csv` | Validate CSV structure |
+| `validate_data` | General data validation |
+| `write_report` | Generate text reports |
+| `write_markdown_report` | Generate markdown reports |
 
 ## Adding a skill
 
@@ -106,14 +72,12 @@ How to know it worked. What to do if it didn't.
 
 Agent discovers it automatically on next run — no registration needed.
 
-## Switch LLM
+## Local setup
 
 ```bash
-# Claude (default)
-LLM_PROVIDER=anthropic
-ANTHROPIC_API_KEY=sk-ant-...
-
-# GPT-4o
-LLM_PROVIDER=openai
-OPENAI_API_KEY=sk-...
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e .
+cp .env.example .env        # add your API key
+crewai run
 ```

@@ -1,85 +1,16 @@
 # config/tasks.yaml
-# Tasks in plain language — agents decide which skills to use.
+# Single task — the goal is injected at runtime via CrewHub inputs.
 
-generate_files:
-  agent: generator
+execute_task:
+  agent: executor
   description: >
-    Generate the following files in ./data/:
+    Complete the following task fully and correctly:
 
-    1. employees.json — a list of 10 employee records, each with:
-       id (int), name (string), department (string), salary (int), active (bool)
-       Use realistic names and departments. Salary between 40000 and 120000.
+    {goal}
 
-    2. scores.csv — a CSV with columns: name, subject, score
-       Include 15 rows. Subjects: Math, Science, History, English.
-       Scores between 50 and 100.
-
-    3. config.json — a simple config file with:
-       app_name, version, environment (staging), debug (bool), max_retries (int)
-
-    After writing each file, read it back to verify it has correct content.
-    Do not finish until all 3 files exist and have correct data.
+    Start by calling list_skills to see what you have available.
+    Then load the relevant skills and execute.
+    Keep going until the task is done and all outputs are verified.
   expected_output: >
-    Confirmation that employees.json, scores.csv, and config.json
-    were all written to ./data/ and verified. Show record counts for each.
-
-validate_files:
-  agent: validator
-  description: >
-    Validate all 3 files in ./data/:
-
-    1. employees.json:
-       - Valid JSON, is a list, has exactly 10 records
-       - Each record has: id, name, department, salary, active
-       - No null or empty values
-       - Salary values are integers between 40000 and 120000
-
-    2. scores.csv:
-       - Valid CSV with headers: name, subject, score
-       - Has at least 15 data rows
-       - No empty cells
-       - Score values are numbers between 50 and 100
-
-    3. config.json:
-       - Valid JSON, is a dict
-       - Has keys: app_name, version, environment, debug, max_retries
-       - No null values
-
-    For any file that fails validation: fix it using bash,
-    then re-validate until it passes.
-    Report the final validation status for each file.
-  expected_output: >
-    A validation report listing PASS or FAIL for each file,
-    with details. All 3 files must end with PASS.
-
-summarise_and_report:
-  agent: reporter
-  description: >
-    Read ./data/employees.json and ./data/scores.csv.
-    Compute the following statistics:
-
-    From employees.json:
-    - Total employees, count per department
-    - Average salary, highest salary (with name), lowest salary (with name)
-    - Count of active vs inactive employees
-
-    From scores.csv:
-    - Average score per subject
-    - Top 3 scorers overall (name + score)
-    - Subject with highest average score
-
-    Save all stats to ./data/summary.json.
-
-    Then write a markdown report to ./output/report.md containing:
-    - Title and generation timestamp
-    - Employee statistics section
-    - Score statistics section
-    - A markdown table of all employees (id, name, department, salary, active)
-    - A markdown table of top 10 scores
-    - Validation status section (all files passed)
-    - Conclusion
-
-    Read the final report back to confirm it is complete.
-  expected_output: >
-    The full contents of ./output/report.md confirming it is
-    complete, well-formatted, and contains all sections.
+    A clear summary of what was done, what files were created,
+    and confirmation that the task is complete.

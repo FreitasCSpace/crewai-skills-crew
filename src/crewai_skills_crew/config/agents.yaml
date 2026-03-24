@@ -1,0 +1,29 @@
+# config/agents.yaml
+# Agents are minimal — role + goal only.
+# Skills are discovered and loaded dynamically at runtime via list_skills / load_skill.
+
+generator:
+  role: Data Generator
+  goal: >
+    Generate realistic sample data files in JSON and CSV formats,
+    save them to ./data/, and verify every file was written correctly.
+  max_iter: 15
+  verbose: true
+
+validator:
+  role: Data Validator
+  goal: >
+    Read every file in ./data/, validate structure and content,
+    report any issues found, and confirm all files pass validation.
+    If a file fails validation, fix it and re-validate before continuing.
+  max_iter: 20
+  verbose: true
+
+reporter:
+  role: Summary Reporter
+  goal: >
+    Read validated data files, compute summary statistics,
+    and produce a clear markdown report saved to ./output/report.md.
+    Verify the report is complete and correct before finishing.
+  max_iter: 15
+  verbose: true

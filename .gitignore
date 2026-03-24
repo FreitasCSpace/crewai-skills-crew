@@ -13,3 +13,4 @@ build/
 *.egg
 .DS_Store
 knowledge_db/
+crewhub_hitl_reference/

@@ -3,6 +3,7 @@
 
 execute_task:
   agent: executor
+  human_input: true
   description: >
     Complete the following task fully and correctly:
 

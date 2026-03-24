@@ -34,8 +34,8 @@ for k, v in summary.items():
 lines += ['', '## Details', '*(add detail sections as needed)*', '', '## Conclusion', 'Task completed successfully.']
 
 import os
-os.makedirs('../output', exist_ok=True)
-with open('../output/report.md', 'w') as f:
+os.makedirs('./output', exist_ok=True)
+with open('./output/report.md', 'w') as f:
     f.write('\n'.join(lines))
 print(f'Report written: {len(lines)} lines')
 "
@@ -64,8 +64,8 @@ for i, r in enumerate(records, 1):
     lines.append(f'| {i} | {r[\"name\"]} | {r[\"value\"]} |')
 
 import os
-os.makedirs('../output', exist_ok=True)
-with open('../output/report.md', 'w') as f:
+os.makedirs('./output', exist_ok=True)
+with open('./output/report.md', 'w') as f:
     f.write('\n'.join(lines))
 print('Report written.')
 "
@@ -73,7 +73,7 @@ print('Report written.')
 
 **Always verify after writing:**
 ```bash
-cat ../output/report.md
+cat ./output/report.md
 ```
 
 ## Output contract

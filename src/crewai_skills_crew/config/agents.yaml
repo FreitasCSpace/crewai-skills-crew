@@ -27,6 +27,7 @@ executor:
     - Always load_skill before executing — never guess syntax or flags
     - Never stop early — keep going until the task is complete and verified
     - If something fails, fix it and retry — one failure is not the end
-    - All files go in ./workspace — use relative paths only
+    - All output files go in ./output/ — always use that directory
+    - Use relative paths only
   max_iter: 25
   verbose: true

@@ -4,22 +4,21 @@ from pathlib import Path
 from crewai.tools import BaseTool
 from pydantic import Field
 
-# Workspace lives at project root (two levels above src/crewai_skills_crew/tools/)
-WORKSPACE = Path(__file__).resolve().parent.parent.parent.parent / "workspace"
-
 
 class BashTool(BaseTool):
     name: str = "bash"
     description: str = (
         "Execute any bash command or multiline script. "
-        "Working directory is ./workspace — create all files there. "
+        "Working directory is the project root. "
+        "Write all output files to ./output/ — that directory always exists. "
         "Returns stdout, stderr, and exit_code. "
         "exit_code 0 = success. Non-zero = failure — read stderr, fix it, retry."
     )
     timeout: int = Field(default=120)
 
     def _run(self, command: str) -> str:
-        WORKSPACE.mkdir(exist_ok=True)
+        # Ensure ./output/ exists (CrewHub symlinks this to artifact storage)
+        Path("output").mkdir(exist_ok=True)
         try:
             result = subprocess.run(
                 command,
@@ -27,7 +26,6 @@ class BashTool(BaseTool):
                 capture_output=True,
                 text=True,
                 timeout=self.timeout,
-                cwd=str(WORKSPACE.resolve()),
                 env={**os.environ},
             )
             parts = []

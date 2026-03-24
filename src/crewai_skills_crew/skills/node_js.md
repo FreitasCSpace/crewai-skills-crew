@@ -11,7 +11,7 @@ Build, run, and manage Node.js/TypeScript applications and packages.
 - Running JavaScript for data processing when Python isn't preferred
 
 ## Prerequisites
-- Node.js installed: `brew install node` or via `nvm`
+- Node.js installed: `curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && apt-get install -y nodejs` or via `nvm`: `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash && nvm install 20`
 - Verify: `node --version && npm --version`
 
 ## How to execute

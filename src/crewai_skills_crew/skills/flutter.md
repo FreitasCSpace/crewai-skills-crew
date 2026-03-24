@@ -11,7 +11,7 @@ Build, test, and manage Flutter/Dart mobile & web applications.
 - Generating code (build_runner, freezed, json_serializable)
 
 ## Prerequisites
-- Flutter SDK installed: `brew install --cask flutter` or from https://flutter.dev
+- Flutter SDK installed — see https://docs.flutter.dev/get-started/install (use the method for your OS)
 - Verify: `flutter doctor`
 
 ## How to execute

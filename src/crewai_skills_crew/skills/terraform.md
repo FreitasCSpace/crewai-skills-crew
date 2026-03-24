@@ -10,7 +10,7 @@ Provision and manage cloud infrastructure as code using Terraform.
 - Importing existing resources into Terraform state
 
 ## Prerequisites
-- Terraform installed: `brew install terraform`
+- Terraform installed: download from https://developer.hashicorp.com/terraform/downloads or `apt-get install -y terraform` (after adding HashiCorp repo)
 - Cloud provider credentials configured (AWS, Azure, or GCP CLI)
 - Verify: `terraform --version`
 

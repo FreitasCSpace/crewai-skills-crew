@@ -11,7 +11,7 @@ Manage Azure cloud resources using the `az` CLI — VMs, storage, app services, 
 - Working with Azure Key Vault secrets
 
 ## Prerequisites
-- `az` CLI installed: `brew install azure-cli` or `curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash`
+- `az` CLI installed: `pip install azure-cli` or `curl -sL https://aka.ms/InstallAzureCLIDeb | bash`
 - Logged in: `az login` (or service principal: `az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID`)
 
 **Verify:**

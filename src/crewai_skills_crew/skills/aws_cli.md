@@ -11,7 +11,7 @@ Manage AWS cloud resources using the `aws` CLI — S3, EC2, Lambda, RDS, IAM, Cl
 - Querying IAM users, roles, or policies
 
 ## Prerequisites
-- AWS CLI installed: `brew install awscli` or `pip install awscli`
+- AWS CLI installed: `pip install awscli` or `curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o awscliv2.zip && unzip awscliv2.zip && ./aws/install`
 - Configured: `aws configure` (or env vars `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_DEFAULT_REGION`)
 
 **Verify:**

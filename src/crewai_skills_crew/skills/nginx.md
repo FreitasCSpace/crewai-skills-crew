@@ -11,7 +11,7 @@ Configure and manage Nginx as a web server, reverse proxy, or load balancer.
 - Setting up redirects, headers, or rate limiting
 
 ## Prerequisites
-- Nginx installed: `brew install nginx` or `apt install nginx`
+- Nginx installed: `apt-get install -y nginx` or `yum install -y nginx`
 - Verify: `nginx -v`
 
 ## How to execute

@@ -11,7 +11,7 @@ Manage Google Cloud Platform resources using the `gcloud` CLI — Compute, Stora
 - Managing IAM and service accounts
 
 ## Prerequisites
-- `gcloud` CLI installed: `brew install --cask google-cloud-sdk`
+- `gcloud` CLI installed: `curl https://sdk.cloud.google.com | bash` or `pip install google-cloud-sdk`
 - Authenticated: `gcloud auth login` or service account: `gcloud auth activate-service-account --key-file=sa.json`
 - Project set: `gcloud config set project PROJECT_ID`
 

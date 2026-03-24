@@ -11,7 +11,7 @@ Manage PostgreSQL databases — create schemas, run queries, import/export data,
 - Checking database health or performance
 
 ## Prerequisites
-- `psql` installed: `brew install postgresql` or available via Docker
+- `psql` installed: `apt-get install -y postgresql-client` or `pip install pgcli`, or available via Docker
 - Connection string or individual params (host, port, user, password, dbname)
 - Use `DATABASE_URL` env var when possible: `postgres://user:pass@host:5432/dbname`
 

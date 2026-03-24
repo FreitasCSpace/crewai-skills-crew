@@ -11,7 +11,7 @@ Manage Kubernetes clusters, deployments, services, and pods using `kubectl`.
 - Applying manifests or Helm charts
 
 ## Prerequisites
-- `kubectl` installed: `brew install kubectl`
+- `kubectl` installed: `curl -LO "https://dl.k8s.io/release/$(curl -sL https://dl.k8s.io/release/stable.txt)/bin/$(uname -s | tr A-Z a-z)/amd64/kubectl" && chmod +x kubectl && mv kubectl /usr/local/bin/`
 - Kubeconfig set: `export KUBECONFIG=~/.kube/config`
 - Verify: `kubectl cluster-info && kubectl get nodes`
 

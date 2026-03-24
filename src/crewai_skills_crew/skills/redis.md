@@ -12,7 +12,7 @@ Use Redis for caching, message queues, rate limiting, and session storage.
 
 ## Prerequisites
 - Redis server running (locally or remote)
-- `redis-cli` installed: `brew install redis`
+- `redis-cli` installed: `apt-get install -y redis-tools` or `pip install redis` (Python client)
 - Or use Python: `pip install redis`
 - `REDIS_URL` env var (e.g., `redis://localhost:6379/0`)
 
